@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{50FA1989-451D-9F76-9A70-C4AEC9CD16DB}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "GreenPiece",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
