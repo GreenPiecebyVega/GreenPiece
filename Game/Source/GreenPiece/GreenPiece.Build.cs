@@ -10,7 +10,7 @@ public class GreenPiece : ModuleRules
 
 		PublicDependencyModuleNames.AddRange(new string[] { 
 			"Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay", "UMG",
-			"Http", "Json", "JsonUtilities"
+			"Http", "Json", "JsonUtilities", "OnlineSubsystem", "OnlineSubsystemUtils"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] {

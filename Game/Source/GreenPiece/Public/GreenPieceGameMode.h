@@ -10,9 +10,19 @@ UCLASS(minimalapi)
 class AGreenPieceGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-
 public:
+	AGreenPieceGameMode();
+	virtual void InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage) override;
+
+protected:
+	UFUNCTION(BlueprintCallable)
+	bool CreateHostBeacon();
+
 	virtual void BeginPlay() override;
+	
+	class AGreenPieceBeaconHostObject* GreenPieceHostObject;
+
+	TArray<class APlayerStart*> FreePlayerStarts;
 };
 
 
