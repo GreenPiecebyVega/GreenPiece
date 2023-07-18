@@ -11,8 +11,10 @@ class AGreenPieceGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 public:
-	AGreenPieceGameMode();
+	AGreenPieceGameMode(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
 	virtual void InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage) override;
+
+	FString InitNewPlayer(APlayerController* NewPlayerController, const FUniqueNetIdRepl& UniqueId, const FString& Options, const FString& Portal) override;
 
 protected:
 	UFUNCTION(BlueprintCallable)

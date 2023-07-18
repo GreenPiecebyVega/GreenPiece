@@ -11,7 +11,7 @@ git config --global --add safe.directory ur_project's_path
 git config --global lfs.contenttype 0
 ```
 
-## Unreal Networking Documentation Helper
+## Network
 - Online Beacons are a special type of Actor that provide a lightweight way to contact a server and interact with it (via RPCs) without committing to a normal game connection. While the built-in classes can be used as they are in some cases, they are intended to be extended into custom classes that perform project-specific interactions, logic, and information requests.    
 [OnlineBeacon](https://docs.unrealengine.com/4.27/en-US/InteractiveExperiences/Networking/OnlineBeacons/)   
 [OnlineSubsystemUtils](https://docs.unrealengine.com/4.26/en-US/API/Plugins/OnlineSubsystemUtils/)    

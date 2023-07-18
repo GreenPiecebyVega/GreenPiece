@@ -5,12 +5,18 @@
 #include "OnlineBeaconHost.h"
 #include "../Public/Network/GreenPieceBeaconHostObject.h"
 
+#include "../Public/GreenPieceCharacter.h"
+#include "../Public/Controllers/GreenPiecePlayerController.h"
+
 #include "EngineUtils.h"
 #include "GameFramework/PlayerStart.h"
 
-AGreenPieceGameMode::AGreenPieceGameMode()
+AGreenPieceGameMode::AGreenPieceGameMode(const FObjectInitializer& ObjectInitializer): Super(ObjectInitializer)
 {
 	GreenPieceHostObject = nullptr;
+
+	DefaultPawnClass = AGreenPieceCharacter::StaticClass();
+	PlayerControllerClass = AGreenPiecePlayerController::StaticClass();
 }
 
 bool AGreenPieceGameMode::CreateHostBeacon()
@@ -25,7 +31,6 @@ bool AGreenPieceGameMode::CreateHostBeacon()
 			if (GreenPieceHostObject)
 			{
 				Host->RegisterHost(GreenPieceHostObject);
-				UE_LOG(LogTemp, Warning, TEXT("Created HOST!!!!!!!!!!!!!"));
 				return true;
 			}
 		}
@@ -45,8 +50,16 @@ void AGreenPieceGameMode::InitGame(const FString& MapName, const FString& Option
 	for (TActorIterator<APlayerStart> It(GetWorld()); It; ++It)
 	{
 		FreePlayerStarts.Add(*It);
-
 		CreateHostBeacon();
-		UE_LOG(LogTemp, Warning, TEXT("Passed Created HOST"));
 	}
+}
+
+FString AGreenPieceGameMode::InitNewPlayer(APlayerController* NewPlayerController, const FUniqueNetIdRepl& UniqueId, const FString& Options, const FString& Portal)
+{
+	const FString Error = Super::InitNewPlayer(NewPlayerController, UniqueId, Options, Portal);
+	if (Error.Len() > 0)
+	{
+		return Error;
+	}
+	return TEXT("");
 }
