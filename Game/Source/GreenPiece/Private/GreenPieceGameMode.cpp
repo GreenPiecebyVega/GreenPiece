@@ -13,10 +13,20 @@
 
 AGreenPieceGameMode::AGreenPieceGameMode(const FObjectInitializer& ObjectInitializer): Super(ObjectInitializer)
 {
-	GreenPieceHostObject = nullptr;
-
-	DefaultPawnClass = AGreenPieceCharacter::StaticClass();
+	GreenPieceHostObject  = nullptr;
+	DefaultPawnClass	  = AGreenPieceCharacter::StaticClass();
 	PlayerControllerClass = AGreenPiecePlayerController::StaticClass();
+}
+
+void AGreenPieceGameMode::BeginPlay()
+{
+    Super::BeginPlay();
+	CreateHostBeacon();
+}
+
+void AGreenPieceGameMode::InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage)
+{
+	Super::InitGame(MapName, Options, ErrorMessage);
 }
 
 bool AGreenPieceGameMode::CreateHostBeacon()
@@ -36,22 +46,6 @@ bool AGreenPieceGameMode::CreateHostBeacon()
 		}
 	}
 	return false;
-}
-
-void AGreenPieceGameMode::BeginPlay()
-{
-    Super::BeginPlay();
-}
-
-void AGreenPieceGameMode::InitGame(const FString& MapName, const FString& Options, FString& ErrorMessage)
-{
-	Super::InitGame(MapName, Options, ErrorMessage);
-
-	for (TActorIterator<APlayerStart> It(GetWorld()); It; ++It)
-	{
-		FreePlayerStarts.Add(*It);
-		CreateHostBeacon();
-	}
 }
 
 FString AGreenPieceGameMode::InitNewPlayer(APlayerController* NewPlayerController, const FUniqueNetIdRepl& UniqueId, const FString& Options, const FString& Portal)
