@@ -15,18 +15,21 @@ void AGreenPiecePlayerController::BeginPlay()
 {
     Super::BeginPlay();
 
-    UGreenPieceGameInstance* GameInstance = Cast<UGreenPieceGameInstance>(GetGameInstance());
-    if (GameInstance && GameInstance->LoginWidgetClass)
+    if (IsLocalController())
     {
-        GameInstance->LoginWidget = CreateWidget<UUserWidget>(this, GameInstance->LoginWidgetClass);
-
-        if (GameInstance->LoginWidget)
+        UGreenPieceGameInstance* GameInstance = Cast<UGreenPieceGameInstance>(GetGameInstance());
+        if (GameInstance && GameInstance->LoginWidgetClass)
         {
-            GameInstance->LoginWidget->AddToViewport();
+            GameInstance->LoginWidget = CreateWidget<UUserWidget>(this, GameInstance->LoginWidgetClass);
 
-            FInputModeUIOnly InputModeData;
-            InputModeData.SetWidgetToFocus(GameInstance->LoginWidget->TakeWidget());
-            InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+            if (GameInstance->LoginWidget)
+            {
+                GameInstance->LoginWidget->AddToViewport(99);
+
+                FInputModeUIOnly InputModeData;
+                InputModeData.SetWidgetToFocus(GameInstance->LoginWidget->TakeWidget());
+                InputModeData.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
+            }
         }
     }
 }
