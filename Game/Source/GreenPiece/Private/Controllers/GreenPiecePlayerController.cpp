@@ -24,7 +24,7 @@ void AGreenPiecePlayerController::BeginPlay()
 
             if (GameInstance->LoginWidget)
             {
-                GameInstance->LoginWidget->AddToViewport(99);
+                GameInstance->LoginWidget->AddToViewport();
 
                 FInputModeUIOnly InputModeData;
                 InputModeData.SetWidgetToFocus(GameInstance->LoginWidget->TakeWidget());

@@ -16,5 +16,7 @@ public class GreenPiece : ModuleRules
 		PrivateDependencyModuleNames.AddRange(new string[] {
 			"Slate", "SlateCore"
 		});
+
+		DynamicallyLoadedModuleNames.Add("OnlineSubsystemNull");
 	}
 }

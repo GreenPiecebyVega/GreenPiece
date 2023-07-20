@@ -17,7 +17,6 @@ public:
 	FString InitNewPlayer(APlayerController* NewPlayerController, const FUniqueNetIdRepl& UniqueId, const FString& Options, const FString& Portal) override;
 
 protected:
-	UFUNCTION(BlueprintCallable)
 	bool CreateHostBeacon();
 
 	virtual void BeginPlay() override;
